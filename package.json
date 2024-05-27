@@ -1,0 +1,17 @@
+{
+  "name": "waitless-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Ruiz <adrianrrruiz@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^10.11.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
