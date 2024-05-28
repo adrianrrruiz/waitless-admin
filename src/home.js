@@ -1,4 +1,4 @@
-import { getAtracciones } from "./firebase-config.js";
+import { getAtracciones, actualizarEstado } from "./firebase-config.js";
 
 let atracciones = [];
 
@@ -21,6 +21,20 @@ function onSelectChange(event) {
     fillEstado(selectedValue);
 }
 
+function onUptadeClick(){
+    const atraccionSelect = document.getElementById("atracciones");
+    const estadoSelect = document.getElementById("estado");
+
+    const atraccionSeleccionadaId = atraccionSelect.value;
+    const estadoSeleccionado = estadoSelect.value;
+
+    const atraccion = atracciones.find(atraccion => atraccion.id == atraccionSeleccionadaId);
+
+    if(atraccionSeleccionadaId != null && atraccionSeleccionadaId != "" && estadoSeleccionado != null){
+        actualizarEstado(atraccion.id, atraccion.nombre, estadoSeleccionado, atraccion.parque);
+    }
+}
+
 function fillEstado(selectedValue) {
     const estadoElement = document.getElementById('estado');
 
@@ -33,12 +47,16 @@ function fillEstado(selectedValue) {
 async function init() {
     try {
         atracciones = await getAtracciones();
-        console.log(atracciones);
         fillAtracciones(atracciones);
 
          // Añadir el event listener después de llenar el select
         const selectElement = document.getElementById('atracciones');
         selectElement.addEventListener('change', onSelectChange);
+
+        // Añadir el event listener al botón de actualizar
+        const actualizarBtn = document.getElementById("actualizar-btn");
+        actualizarBtn.addEventListener("click", onUptadeClick);
+
     } catch (error) {
         console.error("Error al obtener las atracciones:", error);
     }

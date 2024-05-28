@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/fireba
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+import { getDatabase, ref, set, child, get, push, update } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
 
 // Your web app's Firebase configuration
@@ -38,7 +38,8 @@ export async function getAtracciones() {
         atracciones.push({
           id: snapshot.val()[i].aId,
           nombre: snapshot.val()[i].aNombre,
-          estado: snapshot.val()[i].estado
+          estado: snapshot.val()[i].estado,
+          parque: snapshot.val()[i].parque
         });
       }
     } else {
@@ -48,4 +49,20 @@ export async function getAtracciones() {
     console.error(error);
   });
   return atracciones;
+}
+
+export function actualizarEstado(id, nombre, estado, parque) {
+
+  // A post entry.
+  const estadoActualizado = {
+    aId: id,
+    aNombre: nombre,
+    estado: estado,
+    parque: parque
+  };
+
+  const updates = {};
+  updates['/atracciones/' + id] = estadoActualizado;
+
+  return update(ref(database), updates);
 }
