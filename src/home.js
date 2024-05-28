@@ -26,7 +26,10 @@ function onUptadeClick(){
     const estadoSelect = document.getElementById("estado");
 
     const atraccionSeleccionadaId = atraccionSelect.value;
-    const estadoSeleccionado = estadoSelect.value;
+    const estadoSeleccionado = (estadoSelect.value === 'true');
+
+    console.log(estadoSeleccionado);
+    console.log(typeof estadoSeleccionado);
 
     const atraccion = atracciones.find(atraccion => atraccion.id == atraccionSeleccionadaId);
 
