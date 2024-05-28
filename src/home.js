@@ -34,7 +34,7 @@ function onUptadeClick(){
     const atraccion = atracciones.find(atraccion => atraccion.id == atraccionSeleccionadaId);
 
     if(atraccionSeleccionadaId != null && atraccionSeleccionadaId != "" && estadoSeleccionado != null){
-        actualizarEstado(atraccion.id, atraccion.nombre, estadoSeleccionado, atraccion.parque);
+        actualizarEstado(atraccion.id, atraccion.nombre, estadoSeleccionado, atraccion.parque).then(alert("Estado actualizado"))
     }
 }
 
