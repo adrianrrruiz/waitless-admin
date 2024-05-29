@@ -28,13 +28,10 @@ function onUptadeClick(){
     const atraccionSeleccionadaId = atraccionSelect.value;
     const estadoSeleccionado = (estadoSelect.value === 'true');
 
-    console.log(estadoSeleccionado);
-    console.log(typeof estadoSeleccionado);
-
     const atraccion = atracciones.find(atraccion => atraccion.id == atraccionSeleccionadaId);
 
     if(atraccionSeleccionadaId != null && atraccionSeleccionadaId != "" && estadoSeleccionado != null){
-        actualizarEstado(atraccion.id, atraccion.nombre, estadoSeleccionado, atraccion.parque);
+        actualizarEstado(atraccion.id, atraccion.nombre, atraccion.capacidad, atraccion.descripcion, estadoSeleccionado, atraccion.estaturaMaxima, atraccion.estaturaMinima, atraccion.nivelIntensidad, atraccion.parque, atraccion.tipo).then(alert("Estado actualizado"))
     }
 }
 

@@ -38,8 +38,14 @@ export async function getAtracciones() {
         atracciones.push({
           id: snapshot.val()[i].aId,
           nombre: snapshot.val()[i].aNombre,
+          capacidad: snapshot.val()[i].capacidad,
+          descripcion: snapshot.val()[i].descripcion,
           estado: snapshot.val()[i].estado,
-          parque: snapshot.val()[i].parque
+          estaturaMaxima: snapshot.val()[i].estaturaMaxima,
+          estaturaMinima: snapshot.val()[i].estaturaMinima,
+          nivelIntensidad: snapshot.val()[i].nivelIntensidad,
+          parque: snapshot.val()[i].parque,
+          tipo: snapshot.val()[i].tipo
         });
       }
     } else {
@@ -51,14 +57,20 @@ export async function getAtracciones() {
   return atracciones;
 }
 
-export function actualizarEstado(id, nombre, estado, parque) {
+export function actualizarEstado(id, nombre, capacidad, descripcion, estado, estaturaMaxima, estaturaMinima, nivelIntensidad, parque, tipo) {
 
   // A post entry.
   const estadoActualizado = {
     aId: id,
     aNombre: nombre,
+    capacidad: capacidad,
+    descripcion: descripcion,
     estado: estado,
-    parque: parque
+    estaturaMaxima: estaturaMaxima,
+    estaturaMinima: estaturaMinima,
+    nivelIntensidad: nivelIntensidad,
+    parque: parque,
+    tipo: tipo
   };
 
   const updates = {};
